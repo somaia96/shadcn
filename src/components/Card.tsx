@@ -54,24 +54,44 @@ export default function CardNews({ noPic = true, order = 0, news }: IProps) {
           className="lg:h-[224px] w-full object-cover"
         />}
       </CardHeader>}
-      <CardContent className="flex flex-col lg:p-0 lg:py-6 lg:my-0">
-        <CardTitle className="mb-4 text-xl text-primary uppercase">
-          {news.title}
-        </CardTitle>
-        {timestamp && <CardDescription color="blue-gray" className="mb-2 text-sm text-gray-600">
-          {timestamp.toUTCString()}
-        </CardDescription>}
-        <CardDescription color="gray" className="mb-3 text-base text-gray-900">
-          {typeof (news.description) == "string" ? txtSlicer(news.description, (news.photos ? undefined : 250)) : <ol type="1" className="list-decimal list-inside text-gray-700">
-            {news.description.map((item, i) => <li key={i}>{item}</li>)}</ol>}
-        </CardDescription>
-        {news.photos && news.photos?.length > 0 ? <div className="flex max-w-full justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
-          {news.photos.map((img, i) => (
-            <img className="w-auto h-14" key={i} src={img} />
-          ))}
-        </div> : null
-        }
-      </CardContent>
+      {news.decision_id ? <DialogTrigger className="w-full text-start">
+        <CardContent className="flex flex-col lg:p-0 lg:py-6 lg:my-0">
+          <CardTitle className="mb-4 text-xl text-primary uppercase">
+            {news.title}
+          </CardTitle>
+          {timestamp && <CardDescription color="blue-gray" className="mb-2 text-sm text-gray-600">
+            {timestamp.toUTCString()}
+          </CardDescription>}
+          <CardDescription color="gray" className="mb-3 text-base text-gray-900">
+            {typeof (news.description) == "string" ? txtSlicer(news.description, (news.photos ? undefined : 250)) : <ol type="1" className="list-decimal list-inside text-gray-700">
+              {news.description.map((item, i) => <li key={i}>{item}</li>)}</ol>}
+          </CardDescription>
+          {news.photos && news.photos?.length > 0 ? <div className="flex max-w-full justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
+            {news.photos.map((img, i) => (
+              <img className="w-auto h-14" key={i} src={img} />
+            ))}
+          </div> : null
+          }
+        </CardContent>
+      </DialogTrigger>: <CardContent className="flex flex-col lg:p-0 lg:py-6 lg:my-0">
+          <CardTitle className="mb-4 text-xl text-primary uppercase">
+            {news.title}
+          </CardTitle>
+          {timestamp && <CardDescription color="blue-gray" className="mb-2 text-sm text-gray-600">
+            {timestamp.toUTCString()}
+          </CardDescription>}
+          <CardDescription color="gray" className="mb-3 text-base text-gray-900">
+            {typeof (news.description) == "string" ? txtSlicer(news.description, (news.photos ? undefined : 250)) : <ol type="1" className="list-decimal list-inside text-gray-700">
+              {news.description.map((item, i) => <li key={i}>{item}</li>)}</ol>}
+          </CardDescription>
+          {news.photos && news.photos?.length > 0 ? <div className="flex max-w-full justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
+            {news.photos.map((img, i) => (
+              <img className="w-auto h-14" key={i} src={img} />
+            ))}
+          </div> : null
+          }
+        </CardContent>}
+
     </Card>
   );
 }

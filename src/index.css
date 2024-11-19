@@ -133,69 +133,20 @@ nav .active{
 /* /////////////////   Services    ////////////////////// */
 
 
+/* /////////////////   Complaint    ////////////////////// */
 
-/* /////////////////   Event    ////////////////////// */
-.active-button {
-  background-color: #1a4870;
-  border-radius: 4px;
-  border: none;
-  color: white;
-  width: 100px;
-  font-weight: 500px;
-  padding: 0px 4px 0px 4px;
+/* remove spin box from input type number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-.disabled-button {
-  background-color: white;
-  border-radius: 4px;
-  border: none;
-  color: black;
-  width: 100px;
-  font-weight: 500px;
-}
-/* .back-event {
-  background-color: white;
-}
-.main-shadow {
-  box-shadow: 0px 2px 4px #112d4f3d !important;
-}
-.color-gray {
-  color: #4e4e4e;
-}
-.fw-500 {
-  font-weight: 500;
-}
-.color-header {
-  color: #112d4f !important;
-}
-.font-header {
-  font-size: 28px;
-}
-.font-tab {
-  font-size: 16px;
-}
-@media screen and (max-width: 768px) {
-  .font-header {
-    font-size: 20px !important;
-  }
-  .text-align {
-    text-align: center;
-  }
-  .font-tab {
-    font-size: 10px;
-  }
-  li{
-    width: 30px !important;
-  }
-}
-.css-kff4q3-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
-  background-color: #1a4870 !important;
-  color: white !important;
-}
-.css-kff4q3-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-  background-color: #1a4870 !important;
-  color: white !important;
-} */
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: none;
+}
 
-/* /////////////////   Event    ////////////////////// */
-
+/* /////////////////   Complaint    ////////////////////// */

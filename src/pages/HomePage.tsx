@@ -30,11 +30,8 @@ const [tabId, setTabId] = useState(1)
     enabled: !!tabId,
   })
 
-  if (isLoading) return (
-    <div className="my-10 container space-y-10">
-      <HomeSkeleton />
-    </div>
-  )
+  if (isLoading) return <HomeSkeleton />
+
 
   if (error) return <Alerting />
   return (
@@ -43,7 +40,7 @@ const [tabId, setTabId] = useState(1)
         <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
         <Services setTabId={setTabId} servicesData={resSer.data} serTabsData={data?.tabSerRes.data.data} />
         <News newsInfo={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
-        <News modal={true} newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
+        <News newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
       </div>
     </>
   )
