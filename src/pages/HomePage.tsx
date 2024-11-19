@@ -7,7 +7,7 @@ import HomeSkeleton from '../components/Skeleton/HomeSkeleton';
 import { useState } from 'react';
 
 const HomePage = () => {
-const [tabId, setTabId] = useState(1)
+  const [tabId, setTabId] = useState(1)
   const { isLoading, error, data } = useQuery({
     queryKey: ['homeData'],
     queryFn: async () => {
@@ -19,6 +19,7 @@ const [tabId, setTabId] = useState(1)
       return { resNew, eventRes, tabEveRes, resDes, tabSerRes }
     },
   })
+
   const resSer = useQuery({
     queryKey: ['tabServData', tabId],
     queryFn: async ({ queryKey }) => {
@@ -32,15 +33,15 @@ const [tabId, setTabId] = useState(1)
 
   if (isLoading) return <HomeSkeleton />
 
-
   if (error) return <Alerting />
+
   return (
     <>
       <div className="container">
-        <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
+        <News data={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
         <Services setTabId={setTabId} servicesData={resSer.data} serTabsData={data?.tabSerRes.data.data} />
-        <News newsInfo={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
-        <News newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
+        <News data={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
+        <News data={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
       </div>
     </>
   )
