@@ -23,25 +23,25 @@ const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, siz
   const handleChangePage = (item: number) => {
     if (endIndex == (count*size)) return;
     setStartIndex((item - 1) * size);
-    setPage!(item);
+    setPage(item);
     searchParams.set("page", `${item}`);
     setSearchParams(searchParams);
   }
   const handleNextPage = () => {
     if (page === count) return;
 
-    searchParams.set("page", (page! + 1).toString());
+    searchParams.set("page", (page + 1).toString());
     setSearchParams(searchParams);
-    setPage!(prev => prev + 1);
+    setPage(prev => prev + 1);
     setStartIndex((prev: number) => prev + size)
   }
   const handlePrevPage = () => {
     if (page === 1) return;
 
-    searchParams.set("page", (page! - 1).toString());
+    searchParams.set("page", (page - 1).toString());
     setSearchParams(searchParams);
     console.log(searchParams.get("page"));
-    setPage!(prev => prev - 1);
+    setPage(prev => prev - 1);
     setStartIndex((prev: number) => prev - size)
   }
 
@@ -53,7 +53,7 @@ const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, siz
             <PaginationPrevious className="cursor-pointer" onClick={handlePrevPage} />
           </PaginationItem>
           {
-            Array.from(Array(count + 1).keys()).slice(count <= 3 ? 1 : (page! <= count - 2 ? page : page! - 2), page! + 3).map((item, i) => {
+            Array.from(Array(count + 1).keys()).slice(count <= 3 ? 1 : (page <= count - 2 ? page : page - 2), page + 3).map((item, i) => {
               return (
                 <PaginationItem key={i}>
                   <PaginationLink isActive={page == item} className="cursor-pointer" onClick={() => handleChangePage(item)}>
@@ -63,11 +63,11 @@ const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, siz
               )
             })
           }
-          <PaginationItem className={page! >= count - 3 ? "hidden" : ""}>
+          <PaginationItem className={page >= count - 3 ? "hidden" : ""}>
             <PaginationEllipsis />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink isActive={page == count} className={page! > count - 3 ? "hidden" : "cursor-pointer"} onClick={() => { setSearchParams({ page: count }); setPage!(count); setStartIndex((count - 1) * size) }}>
+            <PaginationLink isActive={page == count} className={page > count - 3 ? "hidden" : "cursor-pointer"} onClick={() => { setSearchParams({ page: count }); setPage(count); setStartIndex((count - 1) * size) }}>
               {count}
             </PaginationLink>
           </PaginationItem>
