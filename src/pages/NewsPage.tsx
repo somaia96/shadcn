@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 
 const NewsPage = () => {
   let [searchParams, setSearchParams] = useSearchParams({page:"1"});
-
+  const [page, setPage] = useState(+searchParams.get("page")!);
   const [startIndex, setStartIndex] = useState(0);
   const endIndex = startIndex + 3;
   const { isLoading, error, data } = useQuery({
@@ -35,7 +35,7 @@ const NewsPage = () => {
         <CardNews news={news as INewsApi} key={news.id} />
       ))}
          
-      <Pagination searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
+      <Pagination page={page} setPage={setPage} searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
     </div>
   );
 };

@@ -18,7 +18,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Decisions = () => {
   let [searchParams, setSearchParams] = useSearchParams({page:"1"});
-
+  const [page, setPage] = useState(+searchParams.get("page")!);
   const [startIndex, setStartIndex] = useState(0);
   const endIndex = startIndex + 3;
   const { isLoading, error, data } = useQuery({
@@ -52,7 +52,7 @@ const Decisions = () => {
         </Dialog>
       ))}
       <div className="flex justify-items-center justify-center	">
-        <Pagination searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
+        <Pagination page={page} setPage={setPage} searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
       </div>
     </div>
   );

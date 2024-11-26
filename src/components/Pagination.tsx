@@ -14,8 +14,8 @@ interface IProps {
   endIndex: number;
   searchParams: URLSearchParams;
   setSearchParams: (val: {}) => void;
-  page?: number;
-  setPage?: (val: ((value: number) => number) | number) => void;
+  page: number;
+  setPage: (val: ((value: number) => number) | number) => void;
   setStartIndex: (val: ((prev: number) => number) | number) => void
 }
 const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, size = 3, count, endIndex, setStartIndex }: IProps) => {
