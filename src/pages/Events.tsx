@@ -10,10 +10,9 @@ import Tabs from "../components/Tabs";
 import { useSearchParams } from "react-router-dom";
 
 const Events = () => {
-  let [searchParams, setSearchParams] = useSearchParams({page:"1",tab:"1"});
-
+  let [searchParams, setSearchParams] = useSearchParams({ page: "1", tab: "1" });
+  const [page, setPage] = useState(+searchParams.get("page")!);
   const [startIndex, setStartIndex] = useState((+searchParams.get("page")! - 1) * 3);
-
   const endIndex = startIndex + 3;
   const { isLoading, error, data } = useQuery({
     queryKey: ['activityData'],
@@ -35,18 +34,18 @@ const Events = () => {
   }
   const count = Math.ceil(filteredEvents?.length / 3);
 
-  if (isLoading) return <EventSkeleton/>
+  if (isLoading) return <EventSkeleton />
 
   if (error) return <Alerting />
 
   return (
     <div className="my-10 container">
       <div className="font-header md:text-3xl font-bold text-center text-primary">الفعاليات</div>
-      <Tabs tabs={tabs}  searchParams={searchParams} setSearchParams={setSearchParams} setActiveTab={setActiveTab} activeTab={activeTab}/>
+      <Tabs setPage={setPage} setStartIndex={setStartIndex} tabs={tabs} searchParams={searchParams} setSearchParams={setSearchParams} setActiveTab={setActiveTab} activeTab={activeTab} />
       {filteredEvents.slice(startIndex, endIndex).map((news: IEvents) => (
         <CardNews news={news as INewsApi} key={news.id} />
       ))}
-        <Pagination searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
+      <Pagination page={page} setPage={setPage} searchParams={searchParams} setSearchParams={setSearchParams} endIndex={endIndex} count={count} setStartIndex={setStartIndex} />
     </div>
   );
 };

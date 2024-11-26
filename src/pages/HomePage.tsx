@@ -21,30 +21,23 @@ const HomePage = () => {
   })
 
   const resSer = useQuery({
-    queryKey: ['tabServData', tabId],
-    queryFn: async ({ queryKey }) => {
-      const currentTabId = queryKey[1];
-      if (!currentTabId) return;
+    queryKey: [`tabServData_${tabId}`],
+    queryFn: async () => {
       const resSer = await instance.get(`/services?limit=4&service_category_id=${tabId}`);
       return resSer.data.data
-    },
-    enabled: !!tabId,
+    }
   })
 
   if (isLoading) return <HomeSkeleton />
 
   if (error) return <Alerting />
 
-  return (
-    <>
-      <div className="container">
-        <News data={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
-        <Services setTabId={setTabId} servicesData={resSer.data} serTabsData={data?.tabSerRes.data.data} />
-        <News data={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
-        <News data={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
-      </div>
-    </>
-  )
+  return <div className="container">
+    <News data={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
+    <Services setTabId={setTabId} servicesData={resSer.data} serTabsData={data?.tabSerRes.data.data} />
+    <News data={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
+    <News data={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
+  </div>
 }
 
 export default HomePage

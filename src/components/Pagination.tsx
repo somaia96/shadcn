@@ -7,44 +7,44 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../components/ui/pagination"
-import { useState } from "react";
 
 interface IProps {
   size?: number;
   count: number;
   endIndex: number;
-  searchParams:URLSearchParams;
-   setSearchParams:(val:{})=>void;
+  searchParams: URLSearchParams;
+  setSearchParams: (val: {}) => void;
+  page: number;
+  setPage: (val: ((value: number) => number) | number) => void;
   setStartIndex: (val: ((prev: number) => number) | number) => void
 }
-const PaginationComponent = ({searchParams, setSearchParams, size = 3, count, endIndex, setStartIndex }: IProps) => {
+const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, size = 3, count, endIndex, setStartIndex }: IProps) => {
 
-  const [page, setPage] = useState(+searchParams.get("page")!);
   const handleChangePage = (item: number) => {
-    if (endIndex == count) return;
+    if (endIndex == (count*size)) return;
     setStartIndex((item - 1) * size);
-    setPage(item)
-    searchParams.set("page",`${item}`);
+    setPage(item);
+    searchParams.set("page", `${item}`);
     setSearchParams(searchParams);
   }
-  const handleNextPage = () => { 
+  const handleNextPage = () => {
     if (page === count) return;
-    
-    searchParams.set("page",(page + 1).toString());
+
+    searchParams.set("page", (page + 1).toString());
     setSearchParams(searchParams);
-     setPage(prev => prev + 1); 
-     setStartIndex((prev: number) => prev + size) 
-    }
-  const handlePrevPage = () => { 
+    setPage(prev => prev + 1);
+    setStartIndex((prev: number) => prev + size)
+  }
+  const handlePrevPage = () => {
     if (page === 1) return;
-    
-    searchParams.set("page",(page - 1).toString());
+
+    searchParams.set("page", (page - 1).toString());
     setSearchParams(searchParams);
-  console.log(searchParams.get("page"));
-  setPage(prev => prev - 1); 
-  setStartIndex((prev: number) => prev - size) 
-}
-  
+    console.log(searchParams.get("page"));
+    setPage(prev => prev - 1);
+    setStartIndex((prev: number) => prev - size)
+  }
+
   return (
     <div className="flex justify-items-center justify-center">
       <Pagination>
@@ -53,7 +53,7 @@ const PaginationComponent = ({searchParams, setSearchParams, size = 3, count, en
             <PaginationPrevious className="cursor-pointer" onClick={handlePrevPage} />
           </PaginationItem>
           {
-            Array.from(Array(count + 1).keys()).slice(page <= count - 2 ? page : page - 2, page + 3).map((item, i) => {
+            Array.from(Array(count + 1).keys()).slice(count <= 3 ? 1 : (page <= count - 2 ? page : page - 2), page + 3).map((item, i) => {
               return (
                 <PaginationItem key={i}>
                   <PaginationLink isActive={page == item} className="cursor-pointer" onClick={() => handleChangePage(item)}>
@@ -67,7 +67,7 @@ const PaginationComponent = ({searchParams, setSearchParams, size = 3, count, en
             <PaginationEllipsis />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink isActive={page == count} className={page > count - 3 ? "hidden" : "cursor-pointer"} onClick={() => {setSearchParams({page:count});setPage(count); setStartIndex((count - 1) * size) }}>
+            <PaginationLink isActive={page == count} className={page > count - 3 ? "hidden" : "cursor-pointer"} onClick={() => { setSearchParams({ page: count }); setPage(count); setStartIndex((count - 1) * size) }}>
               {count}
             </PaginationLink>
           </PaginationItem>
