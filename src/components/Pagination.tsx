@@ -29,7 +29,6 @@ const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, siz
   }
   const handleNextPage = () => {
     if (page === count) return;
-
     searchParams.set("page", (page + 1).toString());
     setSearchParams(searchParams);
     setPage(prev => prev + 1);
@@ -37,13 +36,14 @@ const PaginationComponent = ({ page, setPage, searchParams, setSearchParams, siz
   }
   const handlePrevPage = () => {
     if (page === 1) return;
-
     searchParams.set("page", (page - 1).toString());
     setSearchParams(searchParams);
     console.log(searchParams.get("page"));
     setPage(prev => prev - 1);
     setStartIndex((prev: number) => prev - size)
   }
+
+  if(count < 2) return;
 
   return (
     <div className="flex justify-items-center justify-center">

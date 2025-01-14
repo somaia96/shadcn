@@ -15,10 +15,9 @@ import Pagination from "../components/Pagination"
 import DesicionSkeleton from "../components/Skeleton/DesicionSkeleton";
 import { useSearchParams } from "react-router-dom";
 
-
 const Decisions = () => {
   let [searchParams, setSearchParams] = useSearchParams({page:"1"});
-  const [page, setPage] = useState(searchParams.get("page") ? +searchParams.get("page")! : 1);
+  const [page, setPage] = useState(+searchParams.get("page")!);
   const [startIndex, setStartIndex] = useState((+searchParams.get("page")! - 1) * 3);
   const endIndex = startIndex + 3;
   const { isLoading, error, data } = useQuery({

@@ -7,7 +7,7 @@ export interface INavLink{
 export interface INewsApi{
     id:number,
     title:string,
-    description:string|string[],
+    description:string,
     photos?:string[] | null,
     activity_date?:string,
     service_category_id?:number,

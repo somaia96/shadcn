@@ -1,5 +1,6 @@
 import { PhotoIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
+import { Input as Inputs } from "../ui/input"
 
 const InputFile = ({ register }: { register: any }) => {
     const [reader, setReader] = useState("")
@@ -23,13 +24,14 @@ const InputFile = ({ register }: { register: any }) => {
                             >
                                 <PhotoIcon aria-hidden="true" className="mx-auto h-12 w-12 text-gray-300" />
                                 <span>اضغط لإضافة صور أو اسحب الصور وافلت هنا</span>
-                                <input
+                                <Inputs
                                     {...register("photos")}
                                     id="photos"
                                     name="photos"
                                     accept="image/*"
                                     type="file"
-                                    className="sr-only" />
+                                    className="sr-only"
+                                />
                                 <p className="text-xs font-semibold leading-6 text-gray-600">يجب ألا يتجاوز حجم الصورة 2 ميغابايت وعدد الصور 1</p>
                             </label>
                         </div>

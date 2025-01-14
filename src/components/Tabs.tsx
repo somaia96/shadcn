@@ -9,7 +9,6 @@ interface IProps {
   setStartIndex: (val: ((prev: number) => number) | number) => void
   searchParams: URLSearchParams;
   setSearchParams: (val: {}) => void;
-  
   setPage:(val:((value:number)=>number)|number)=>void;
 }
 

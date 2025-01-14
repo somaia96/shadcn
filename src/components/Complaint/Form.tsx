@@ -8,23 +8,31 @@ import TextArea from './TextArea';
 import InputFile from './InputFile';
 import Toast from './Toast';
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 export default function Form() {
-    const { toast } = useToast()
-    const { register, handleSubmit, formState: { errors } } = useForm<IComplaints>()
-    const onSubmit: SubmitHandler<IComplaints> = async (comData) => {
-        try {
-            let res = await instance.post('/complaint', comData, {
-                headers: { "Content-Type": "multipart/form-data" }
-            });
-            (res.status === 200 || res.status === 201) ?
-                Toast('تم ارسال الشكوى بنجاح 👏', "default", toast, "bg-blue-100") : null;
-        } catch (error) {
-            console.error('Error fetching news:', error);
-            Toast('حدث خطأ أثناء ارسال الشكوى', "destructive", toast)
+    const { toast } = useToast();
+    const { register, handleSubmit, reset , formState: { errors } } = useForm<IComplaints>()
+    const {mutate , isSuccess, isError} = useMutation({
+        mutationFn: (complaint:IComplaints) => {
+          return instance.post('/complaint',complaint , {
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+        },
+      });
+      useEffect(() => {
+        if (isSuccess) {
+            Toast('تم ارسال الشكوى بنجاح 👏', "default", toast, "bg-blue-100");
+            reset();
         }
-    };
+        if (isError) {
+            Toast('حدث خطأ أثناء ارسال الشكوى ✖', "destructive", toast);
+        }
+    }, [isSuccess, isError, toast, reset]);
 
+    const onSubmit: SubmitHandler<IComplaints> = comData => {mutate(comData)};
+  
     return (
         <form className='bg-[#F8F0E5] lg:w-5/12 p-3 rounded-xl'
             onSubmit={handleSubmit(onSubmit)}
@@ -32,7 +40,7 @@ export default function Form() {
             <Toaster />
             <div className="space-y-2">
                 <Input errors={errors} register={register} label="اسم مقدم الشكوى:" name="name" placeholder="الاسم و الكنية" />
-                <Input errors={errors} register={register} label="رقم التواصل:" name="number" placeholder="هاتف ثابت أو موبايل" />
+                <Input errors={errors} register={register} label="رقم التواصل:" name="number" placeholder="مثال: 09XXXXXXXX" />
                 <TextArea errors={errors} register={register} />
                 <InputFile register={register} />
             </div>

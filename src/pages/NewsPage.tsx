@@ -23,8 +23,6 @@ const NewsPage = () => {
   })
   const count = Math.ceil(data?.count/3);
 
-
-
   if (isLoading) return <NewsSkeleton/>
 
   if (error) return <Alerting />
