@@ -8,10 +8,10 @@ const Footer = () => {
       <div className="container flex flex-col md:flex-row justify-center items-center md:items-start gap-10 w-full text-base text-[#F3F3F3]">
         <div className="flex-1 flex flex-col justify-center items-center text-center md:text-start md:items-start gap-2">
           <h2 className="text-2xl">
-            مجلس بلدية ضاحية الأسد
+            مجلس بلدية ضاحية 
           </h2>
           <p>
-            جميع الحقوق محفوظة لبلدية ضاحية الأسد 2024
+            جميع الحقوق محفوظة لبلدية ضاحية 2024
             تشرف البلدية على إدارة الموقع
           </p>
         </div>
@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
         <div className="flex-1 flex flex-col justify-center items-center text-center md:text-start md:items-start gap-2 px-3">
           <h3 className="text-lg">
-            الوصول لبلدية ضاحية الأسد باستعمال<br />
+            الوصول لبلدية ضاحية باستعمال<br />
             Google map
           </h3>
           <div className="rounded-lg border overflow-hidden">

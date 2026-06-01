@@ -9,28 +9,28 @@ const HomePage = () => {
   const homeDataNews = useQuery({
     queryKey: ['homeDataNews'],
     queryFn: async () => {
-      const {data} = await instance.get('/news?limit=2');
-      return  data.data
+      const { data } = await instance.get('/news?limit=2');
+      return data.data
     },
   })
   const homeDataActive = useQuery({
     queryKey: ['homeDataActive'],
     queryFn: async () => {
-      const {data} = await instance.get('/activity?limit=2')
+      const { data } = await instance.get('/activity?limit=2')
       return data.data
     },
   })
   const homeDataDes = useQuery({
     queryKey: ['homeDataDes'],
     queryFn: async () => {
-      const {data} = await instance.get('/decision?limit=2');
-      return  data.data
+      const { data } = await instance.get('/decision?limit=2');
+      return data.data
     },
   })
 
-  if (homeDataNews.isLoading) return <HomeSkeleton />
+  if (homeDataNews.isLoading || homeDataActive.isLoading || homeDataDes.isLoading) return <HomeSkeleton />
 
-  if (homeDataNews.error||homeDataActive.error||homeDataDes.error) return <Alerting />
+  if (homeDataNews.error || homeDataActive.error || homeDataDes.error) return <Alerting />
 
   return <div className="container">
     <News data={homeDataNews.data} title='أحدث الأخبار' link='/news' />

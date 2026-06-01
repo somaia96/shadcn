@@ -24,7 +24,7 @@ const ContactText = () => {
             </div>
             <hr className="w-1/2 mx-auto my-3"/>
             <ul>
-                <li className="font-semibold">العنوان: <span className="font-medium">دمشق-ضاحية الأسد جانب قسم الشرطة</span> </li>
+                <li className="font-semibold">العنوان: <span className="font-medium">دمشق-ضاحية جانب قسم الشرطة</span> </li>
                 <li className="font-semibold">ايام الدوام: <span className="font-medium">يوميا من الاحد للخميس من 9 الى 2 ظهرا</span> </li>
                 <li className="font-semibold">رقم الهاتف: <span className="text-primary font-medium"> 0116669999</span> </li>
             </ul>

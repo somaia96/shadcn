@@ -11,7 +11,7 @@ const Navbar = () => {
             {isOpen ? <ArrowLeftIcon className="size-6 fixed top-7 left-7 text-primary z-20 cursor-pointer" onClick={() => setIsOpen(false)} /> : null}
             <div className="container flex items-center justify-between">
                 <Link to="/">
-                    <h3 className={(isOpen ? "text-gray-900 font-bold z-20 fixed top-32 left-1/2 -translate-x-1/2" : "text-white") + " text-2xl md:text-white"}>بلدية ضاحية الأسد</h3>
+                    <h3 className={(isOpen ? "text-gray-900 font-bold z-20 fixed top-32 left-1/2 -translate-x-1/2" : "text-white") + " text-2xl md:text-white"}>بلدية ضاحية</h3>
                 </Link>
                 <div style={isOpen ? { backgroundColor: "white", position: "fixed", zIndex: 4, top: 0, left: 0, width: "100%", height: "100vh", flexDirection: "column", display: "flex" } : {}} className="hidden md:flex items-center justify-center gap-4 text-lg">
                     {navLink.map((item, i) => <NavLink key={i} onClick={() => setIsOpen(false)} to={item.link}>{item.text}</NavLink>)}
