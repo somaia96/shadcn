@@ -11,7 +11,7 @@ import instance from '../../api/instance';
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
-  const [tabId, setTabId] = useState(1)
+  const [tabId, setTabId] = useState(0)
   const tabs = useQuery({
     queryKey: ['HomeServices'],
     queryFn: async () => {

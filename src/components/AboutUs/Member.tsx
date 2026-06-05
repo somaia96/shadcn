@@ -7,6 +7,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 function Member({ member }: { member: IMembers }) {
+  console.log(member.photo);
+  
   return (
     <Card className="h-full">
       <CardHeader shadow={false} floated={false} >

@@ -35,7 +35,7 @@ const HomePage = () => {
   return <div className="container">
     <News data={homeDataNews.data} title='أحدث الأخبار' link='/news' />
     <Services />
-    <News data={homeDataActive.data} title='أحدث الفعاليات' link='/activeties' />
+    <News data={homeDataActive.data} title='أحدث الفعاليات' link='/events' />
     <News data={homeDataDes.data} title='أحدث القرارات' link='/decisions' />
   </div>
 }

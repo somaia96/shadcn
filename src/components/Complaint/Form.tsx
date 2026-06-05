@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 
 export default function Form() {
     const { toast } = useToast();
-    const { register, handleSubmit, reset , formState: { errors } } = useForm<IComplaints>()
+    const { register, handleSubmit, reset ,control , formState: { errors } } = useForm<IComplaints>()
     const {mutate , isSuccess, isError} = useMutation({
         mutationFn: (complaint:IComplaints) => {
           return instance.post('/complaint',complaint , {
@@ -42,7 +42,7 @@ export default function Form() {
                 <Input errors={errors} register={register} label="اسم مقدم الشكوى:" name="name" placeholder="الاسم و الكنية" />
                 <Input errors={errors} register={register} label="رقم التواصل:" name="number" placeholder="مثال: 09XXXXXXXX" />
                 <TextArea errors={errors} register={register} />
-                <InputFile register={register} />
+                <InputFile register={register} control={control} />
             </div>
             <Button variant="default" className="w-full my-3 font-semibold">
                 ارسال الشكوى
